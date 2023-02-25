@@ -1,4 +1,4 @@
-package net.snapdrop;
+package pixincreate.pairdrop.net;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -29,7 +29,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private final int FILE_CHOOSER_RESULT_CODE = 10;
     private final int PERMISSION_REQUEST_CODE = 11;
-    private final String SNAPDROP_URL = "https://snapdrop.net/";
+    private final String PAIRDROP_URL = "https://pairdrop.net/";
 
     private WebView browser;
     private View aboutLayout;
@@ -53,7 +53,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         browserSettings();
         handleIntent(getIntent());
 
-        browser.loadUrl(SNAPDROP_URL);
+        browser.loadUrl(PAIRDROP_URL);
 
         aboutLayout = findViewById(R.id.about_layout);
         findViewById(R.id.about).setOnClickListener(this);
@@ -61,13 +61,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.refresh).setOnClickListener(this);
         findViewById(R.id.downloads).setOnClickListener(this);
         findViewById(R.id.wormhole).setOnClickListener(this);
-        findViewById(R.id.robin_github).setOnClickListener(this);
-        findViewById(R.id.robin_twitter).setOnClickListener(this);
-        findViewById(R.id.robin_more).setOnClickListener(this);
-        findViewById(R.id.tanuj_github).setOnClickListener(this);
-        findViewById(R.id.tanuj_twitter).setOnClickListener(this);
-        findViewById(R.id.tanuj_more).setOnClickListener(this);
-        findViewById(R.id.snapdrop_web).setOnClickListener(this);
+        findViewById(R.id.schlagmichdoch_github).setOnClickListener(this);
+        findViewById(R.id.pixincreate_github).setOnClickListener(this);
+        findViewById(R.id.pairdrop_web).setOnClickListener(this);
     }
 
     @Override
@@ -87,7 +83,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.refresh:
-                browser.loadUrl(SNAPDROP_URL);
+                browser.loadUrl(PAIRDROP_URL);
                 break;
             case R.id.downloads:
                 startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
@@ -101,26 +97,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.close:
                 aboutLayout.setVisibility(View.GONE);
                 break;
-            case R.id.robin_github:
-                openWebUrl("https://github.com/RobinLinus/snapdrop");
+            case R.id.schlagmichdoch_github:
+                openWebUrl("https://github.com/schlagmichdoch/pairdrop");
                 break;
-            case R.id.robin_twitter:
-                openWebUrl("https://twitter.com/robin_linus/");
+            case R.id.pixincreate_github:
+                openWebUrl("https://github.com/pixincreate/");
                 break;
-            case R.id.tanuj_github:
-                openWebUrl("https://github.com/tanujnotes/");
-                break;
-            case R.id.tanuj_twitter:
-                openWebUrl("https://twitter.com/tanujnotes/");
-                break;
-            case R.id.robin_more:
-                openWebUrl("https://www.nimiq.com/?utm_source=snapdrop");
-                break;
-            case R.id.tanuj_more:
-                openWebUrl("https://play.google.com/store/apps/dev?id=7198807840081074933&utm_source=snapdrop");
-                break;
-            case R.id.snapdrop_web:
-                openWebUrl(SNAPDROP_URL);
+            case R.id.pairdrop_web:
+                openWebUrl(PAIRDROP_URL);
                 break;
         }
     }
@@ -244,7 +228,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 if (url == null || url.isEmpty()) return;
                 try {
                     URL host = new URL(url);
-                    if (!host.getHost().contains("snapdrop.net")) {
+                    if (!host.getHost().contains("pairdrop.net")) {
                         openWebUrl(url);
                     }
                 } catch (MalformedURLException e) {

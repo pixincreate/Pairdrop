@@ -1,4 +1,4 @@
-package net.snapdrop;
+package pixincreate.pairdrop.net;
 
 
 import java.util.HashMap;

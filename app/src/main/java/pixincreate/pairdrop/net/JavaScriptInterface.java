@@ -1,4 +1,4 @@
-package net.snapdrop;
+package pixincreate.pairdrop.net;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -56,7 +56,7 @@ public class JavaScriptInterface {
 
     private void convertBase64StringToFileAndSaveIt(String base64Data, String mimeType, String extension) throws IOException {
         String currentDateTime = DateFormat.getDateTimeInstance().format(new Date());
-        String fileName = "Snapdrop_" + currentDateTime;
+        String fileName = "Pairdrop_" + currentDateTime;
         if (!extension.isEmpty()) fileName = fileName + "_." + extension;
         byte[] fileAsBytes = Base64.decode(base64Data.replaceFirst("^data:" + mimeType + ";base64,", ""), 0);
 
@@ -66,7 +66,7 @@ public class JavaScriptInterface {
             contentValues.put(MediaStore.Downloads.DISPLAY_NAME, fileName);
             contentValues.put(MediaStore.Downloads.MIME_TYPE, mimeType);
             contentValues.put(MediaStore.Downloads.DATE_ADDED, System.currentTimeMillis());
-            contentValues.put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS + "/Snapdrop");
+            contentValues.put(MediaStore.Downloads.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS + "/Pairdrop");
 
             Uri uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues);
             OutputStream outputStream = resolver.openOutputStream(uri);

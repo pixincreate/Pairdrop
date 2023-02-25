@@ -1,4 +1,4 @@
-package net.snapdrop;
+package net.pairdrop;
 
 import org.junit.Test;
 

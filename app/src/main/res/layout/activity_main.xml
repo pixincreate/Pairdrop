@@ -71,7 +71,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_snapdrop" />
+            android:src="@drawable/ic_pairdrop" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="8dp"
             android:gravity="center_horizontal"
-            android:text="@string/the_easiest_way_to_transfer_files_across_devices"
+            android:text="@string/tagline"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/snapdrop_project_by"
+            android:text="@string/pairdrop_project_by"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
@@ -113,36 +113,18 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/robin_github"
+                android:id="@+id/schlagmichdoch_github"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:src="@drawable/ic_github" />
 
-            <ImageView
-                android:id="@+id/robin_twitter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="8dp"
-                android:padding="8dp"
-                android:src="@drawable/ic_twitter" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/robin_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="@string/more_by_robin"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
 
         <Space
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="0.5" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -153,6 +135,15 @@
             android:textColor="@color/white"
             android:textSize="16sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="@string/app_modified_by"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -161,44 +152,26 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/tanuj_github"
+                android:id="@+id/pixincreate_github"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:src="@drawable/ic_github" />
-
-            <ImageView
-                android:id="@+id/tanuj_twitter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="8dp"
-                android:padding="8dp"
-                android:src="@drawable/ic_twitter" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tanuj_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="@string/more_by_tanuj"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
 
         <Space
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="0.5" />
 
         <TextView
-            android:id="@+id/snapdrop_web"
+            android:id="@+id/pairdrop_web"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:letterSpacing="0.25"
-            android:text="@string/www_snapdrop_net"
+            android:text="@string/www_pairdrop_net"
             android:textAllCaps="true"
             android:textColor="@color/white" />
 

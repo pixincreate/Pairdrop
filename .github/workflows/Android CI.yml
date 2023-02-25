@@ -51,6 +51,15 @@ jobs:
           $path/apksigner sign --ks keystore.jks --ks-key-alias ${{ secrets.KEYSTORE_ALIAS_NAME }} --ks-pass pass:${{ secrets.KEYSTORE_PASSWORD }} --key-pass pass:${{ secrets.KEYSTORE_PASSWORD_ALIAS }} --out app/build/outputs/apk/release/"$apk_name" app/build/outputs/apk/release/aligned.apk
           $path/apksigner verify app/build/outputs/apk/release/"$apk_name"
 
+          apk_dir=app
+          apk_files=$(find $apk_dir -name "*.apk")
+          if [ -z "$apk_files" ]; then
+            echo "No APK files found in $apk_dir"
+          else
+            echo "APK files found in $apk_dir:"
+            echo "$apk_files"
+          fi
+
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:

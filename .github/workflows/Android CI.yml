@@ -33,7 +33,7 @@ jobs:
       - name: Build with Gradle
         run: |
           ./gradlew assemble --stacktrace
-          apk_dir=app
+          apk_dir="app"
           apk_files=$(find $apk_dir -name "*.apk")
           if [ -z "$apk_files" ]; then
             echo "No APK files found in $apk_dir"
@@ -42,7 +42,7 @@ jobs:
             echo "$apk_files"
           fi
           
-          apk_file=$(basename $(find "app" -name "*.apk"))
+          apk_file=$(basename $(find "app/build/outputs/apk/release" -name "*.apk"))
           apk_name="${apk_file//unsigned/signed}"
           echo "app_name=$apk_name" >> $GITHUB_ENV
           
@@ -51,24 +51,9 @@ jobs:
           $path/apksigner sign --ks keystore.jks --ks-key-alias ${{ secrets.KEYSTORE_ALIAS_NAME }} --ks-pass pass:${{ secrets.KEYSTORE_PASSWORD }} --key-pass pass:${{ secrets.KEYSTORE_PASSWORD_ALIAS }} --out app/build/outputs/apk/release/"$apk_name" app/build/outputs/apk/release/aligned.apk
           $path/apksigner verify app/build/outputs/apk/release/"$apk_name"
 
-          apk_dir=app
-          apk_files=$(find $apk_dir -name "*.apk")
-          if [ -z "$apk_files" ]; then
-            echo "No APK files found in $apk_dir"
-          else
-            echo "APK files found in $apk_dir:"
-            echo "$apk_files"
-          fi
-
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: app-release
           path: app/build/outputs/apk/release/${{ env.app_name }}
           retention-days: 2
-
-      - name: Release
-        uses: r0user/release-apk@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-          APP_FOLDER: app

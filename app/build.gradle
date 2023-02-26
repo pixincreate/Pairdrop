@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "pixincreate.pairdrop.net"
-        minSdkVersion 25
+        minSdkVersion 21
         targetSdkVersion 32
         versionCode 5
         versionName "0.5"

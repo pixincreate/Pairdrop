@@ -40,10 +40,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().setStatusBarColor(getColor(android.R.color.black));
-            getWindow().setNavigationBarColor(getColor(android.R.color.black));
-        }
+        getWindow().setStatusBarColor(getColor(android.R.color.black));
+        getWindow().setNavigationBarColor(getColor(android.R.color.black));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -161,9 +159,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private void browserSettings() {
         browser.getSettings().setJavaScriptEnabled(true);
         browser.setDownloadListener((url, userAgent, contentDisposition, mimeType, contentLength) -> {
-            if (hasStoragePermission()
-                    || Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-                    || Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            if (hasStoragePermission() || Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 saveFile(url, mimeType);
             } else {
                 downloadUrl = url;

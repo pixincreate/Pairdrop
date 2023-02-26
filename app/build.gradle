@@ -11,9 +11,13 @@ android {
         minSdkVersion 25
         targetSdkVersion 33
         versionCode 5
-        versionName "v0.5"
+        versionName "0.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    task printVersionInformation {
+        println "v" + defaultConfig.versionName + " (" + defaultConfig.versionCode + ")"
     }
 
     buildTypes {
@@ -28,8 +32,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
 

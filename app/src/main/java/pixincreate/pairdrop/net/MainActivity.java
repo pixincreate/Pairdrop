@@ -169,7 +169,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         });
         browser.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         browser.getSettings().setDatabaseEnabled(true);
-        browser.getSettings().setDomStorageEnabled(true);
+        browser.getSettings().setDomStorageEnabled(false);
+        browser.getSettings().setAllowFileAccessFromFileURLs(true);
+        browser.getSettings().setAllowUniversalAccessFromFileURLs(true);
         browser.getSettings().setUseWideViewPort(true);
         browser.getSettings().setLoadWithOverviewMode(true);
         browser.addJavascriptInterface(new JavaScriptInterface(this), "Android");

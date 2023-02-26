@@ -1,4 +1,4 @@
-package net.pairdrop;
+package pixincreate.pairdrop.net;
 
 import android.content.Context;
 

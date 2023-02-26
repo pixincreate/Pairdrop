@@ -12,10 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: set up JDK 17
+      - name: set up JDK 11
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '11'
           distribution: 'temurin'
           cache: gradle
 
@@ -34,7 +34,7 @@ jobs:
         run: |
           ./gradlew assemble --stacktrace
 
-          echo "version_info=$(${{ github.workspace }}/gradlew -q printVersionInformation)" >> $GITHUB_ENV
+          version_info=$(./gradlew -q printVersionInformation)
 
           apk_dir="app"
           apk_files=$(find $apk_dir -name "*.apk")
@@ -46,22 +46,14 @@ jobs:
           fi
 
           apk_file=$(basename $(find "app/build/outputs/apk/release" -name "*.apk"))
-          apk_name="${ apk_file//app-release-unsigned/pixincreate.pairdrop.net-release-signed-${{ env.version_info }} }"
+          apk_rename="${apk_file//app-release/pixincreate.pairdrop.net-release}"
+          apk_name="${apk_rename//unsigned/signed-$version_info}"
           echo "app_name=$apk_name" >> $GITHUB_ENV
           
           path=/usr/local/lib/android/sdk/build-tools/32.0.0
           $path/zipalign -v -p 4 app/build/outputs/apk/release/*.apk app/build/outputs/apk/release/aligned.apk
           $path/apksigner sign --ks keystore.jks --ks-key-alias ${{ secrets.KEYSTORE_ALIAS_NAME }} --ks-pass pass:${{ secrets.KEYSTORE_PASSWORD }} --key-pass pass:${{ secrets.KEYSTORE_PASSWORD_ALIAS }} --out app/build/outputs/apk/release/"$apk_name" app/build/outputs/apk/release/aligned.apk
           $path/apksigner verify app/build/outputs/apk/release/"$apk_name"
-
-          apk_dir="app"
-          apk_files=$(find $apk_dir -name "*.apk")
-          if [ -z "$apk_files" ]; then
-            echo "No APK files found in $apk_dir"
-          else
-            echo "APK files found in $apk_dir:"
-            echo "$apk_files"
-          fi
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
